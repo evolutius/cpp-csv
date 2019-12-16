@@ -3,14 +3,21 @@ AccessModifierOffset: -4
 BreakBeforeBinaryOperators: true
 BreakBeforeTernaryOperators: true
 BinPackParameters: false
-ColumnLimit:     99
+ColumnLimit:     120
 DerivePointerBinding: false
 IndentWidth:     4
 TabWidth:        4
-BreakBeforeBraces: Allman
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterEnum: true
+    AfterStruct: false
+    SplitEmptyFunction: false
+    AfterClass: false
+    AfterFunction: false
+    AfterControlStatement: Always
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
-SpacesInAngles:  flase
+SpacesInAngles:  false
 SpaceInEmptyParentheses: false
 IndentCaseLabels : true
 BreakConstructorInitializersBeforeComma: true
@@ -18,8 +25,8 @@ ConstructorInitializerAllOnOneLineOrOnePerLine: true
 AllowShortIfStatementsOnASingleLine: false
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakAfterDefinitionReturnType: false
-AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
 AlignOperands: true
 AllowShortBlocksOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
@@ -29,4 +36,3 @@ BinPackArguments: false
 BinPackParameters: false
 AllowShortFunctionsOnASingleLine: false
 BreakBeforeBinaryOperators: true
-compactNamespaces: true

@@ -2,15 +2,13 @@
 #define _E_EV_MODULE_H_
 
 #if defined(__cplusplus)
-namespace evoluti
-{
+namespace evoluti {
 #endif
-    struct ev_mod_ver
-    {
-        unsigned char major;
-        unsigned char minor;
-        unsigned char patch;
-    };
+struct ev_mod_ver {
+    unsigned char major;
+    unsigned char minor;
+    unsigned char patch;
+};
 #if defined(__cplusplus)
 }
 #endif

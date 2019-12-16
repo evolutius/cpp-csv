@@ -76,5 +76,4 @@
     },
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "clang-format.style": "${workspaceRoot}/resources/.clang-format"
 }

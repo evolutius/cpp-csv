@@ -5,6 +5,6 @@
 
 namespace evoluti {
 class csv_reader {};
-}
+}  // namespace evoluti
 
 #endif /* _E_CSV_READER_H_ */
