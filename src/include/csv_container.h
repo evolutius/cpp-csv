@@ -27,14 +27,13 @@ public:
     std::vector<csv_row>::const_iterator cend() const;
 
     /* Modifiers */
-    void set_header(const std::string& hdr);
+    void set_header(const csv_row& hdr);
     void set_rows(const std::vector<csv_row>& rows);
     void add_row(const csv_row& row);
     void insert_row(std::size_t i, const csv_row& row);
     void remove_row_at(std::size_t i);
 
 private:
-    bool _has_header;
     csv_row header;  // optional
     std::vector<csv_row> data;
 };

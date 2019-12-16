@@ -10,12 +10,10 @@ evoluti::csv_container::csv_container(const csv_row& hdr, const std::vector<csv_
     {
         throw std::logic_error("Number of columns in header not equal to number of columns in rows");
     }
-
-    _has_header = hdr.size() > 0;
 }
 
 bool evoluti::csv_container::has_header() const {
-    return _has_header;
+    return header.size() > 0;
 }
 
 csv_row evoluti::csv_container::get_header() const {
@@ -54,9 +52,8 @@ std::vector<csv_row>::const_iterator evoluti::csv_container::cend() const {
     return data.cend();
 }
 
-void evoluti::csv_container::set_header(const std::string& hdr) {
+void evoluti::csv_container::set_header(const csv_row& hdr) {
     header = hdr;
-    _has_header = hdr.size() > 0;
 }
 
 void evoluti::csv_container::set_rows(const std::vector<csv_row>& rows) {
