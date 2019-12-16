@@ -7,7 +7,8 @@
 #include "csv_container.h"
 #include "csv_row.h"
 
-evoluti::csv_reader::csv_reader(const std::string& fp) : filepath(fp) {
+evoluti::csv_reader::csv_reader(const std::string& fp, bool parse_headers)
+    : filepath(fp), parsing_headers(parse_headers) {
     if (fp.compare(fp.size() - 4, 4, ".csv") != 0 && fp.compare(fp.size() - 4, 4, ".CSV") != 0)
     {
         throw std::logic_error("Invalid file extension (expected CSV)");
@@ -41,22 +42,32 @@ void evoluti::csv_reader::read_and_parse() {
         throw("Cannot open CSV file");
     }
 
+    if (parsing_headers)
+    {
+        getline(csv_file, curr_line);  // first is header
+        csv_row header = parse_line(line);
+        csv_data.set_header(header);
+        num_columns = header.num_columns();
+    }
+
     while (getline(csv_file, curr_line))
     {
-        if (curr_line == std::numeric_limits<std::size_t>::max())
+        csv_row new_row = parse_line();
+        if (num_columns == std::numeric_limits<std::size_t>::max())
         {
-            curr_line = parse_line(line);
-        } else if (curr_line != parse_line(line))
+            num_columns = row.num_columns();
+        } else if (num_columns != row.num_columns())
         {
             csv_file.close();
             throw("Invalid CSV file (different number of columns in rows)");
         }
+        csv_data.add_row(new_row);
     }
 
     csv_file.close();
 }
 
-std::size_t evoluti::csv_reader::parse_line(const std::string& line) {
+evoluti::csv_row evoluti::csv_reader::parse_line(const std::string& line) {
     std::size_t curr_pos = 0;
     constexpr std::string delim = ",";
     csv_row row;
@@ -73,7 +84,5 @@ std::size_t evoluti::csv_reader::parse_line(const std::string& line) {
         curr_pos = found_pos;
     }
 
-    csv_container.add_row(row);
-
-    return row.num_columns();
+    return row;
 }

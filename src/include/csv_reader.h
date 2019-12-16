@@ -10,7 +10,7 @@ namespace evoluti {
 class csv_reader {
 public:
     csv_reader() = default;
-    csv_reader(const std::string& fp);
+    csv_reader(const std::string& fp, bool parse_headers);
 
     void set_filepath(const std::string& fp);
     std::string get_filepath() const;
@@ -21,6 +21,7 @@ public:
 private:
     std::string filepath;
     csv_container csv_data;
+    bool parsing_headers;
 
     std::size_t parse_line(const std::string& line)
 };
