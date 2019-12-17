@@ -23,7 +23,7 @@ private:
     csv_container csv_data;
     bool parsing_headers;
 
-    std::size_t parse_line(const std::string& line)
+    csv_row parse_line(const std::string& line) const;
 };
 }  // namespace evoluti
 
