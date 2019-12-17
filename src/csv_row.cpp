@@ -23,6 +23,30 @@ std::size_t evoluti::csv_row::num_columns() const {
     return items.size();
 }
 
+std::vector<std::string>::iterator evoluti::csv_row::begin() {
+    return items.begin();
+}
+
+std::vector<std::string>::const_iterator evoluti::csv_row::begin() const {
+    return items.begin();
+}
+
+std::vector<std::string>::const_iterator evoluti::csv_row::cbegin() const {
+    return items.cbegin();
+}
+
+std::vector<std::string>::iterator evoluti::csv_row::end() {
+    return items.end();
+}
+
+std::vector<std::string>::const_iterator evoluti::csv_row::end() const {
+    return items.end();
+}
+
+std::vector<std::string>::const_iterator evoluti::csv_row::cend() const {
+    return items.cend();
+}
+
 void evoluti::csv_row::set_items(const std::vector<std::string>& its) {
     items = its;
 }

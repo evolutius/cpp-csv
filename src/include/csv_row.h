@@ -17,6 +17,14 @@ public:
     std::string get_last_item(std::size_t i) const;
     std::size_t num_columns() const;
 
+    /* Iterators */
+    std::vector<std::string>::iterator begin();
+    std::vector<std::string>::const_iterator begin() const;
+    std::vector<std::string>::const_iterator cbegin() const;
+    std::vector<std::string>::iterator end();
+    std::vector<std::string>::const_iterator end() const;
+    std::vector<std::string>::const_iterator cend() const;
+
     /* Modifiers */
     void set_items(const std::vector<std::string>& its);
 
