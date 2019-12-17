@@ -6,49 +6,49 @@
 #include "csv_row.h"
 
 evoluti::csv_container::csv_container(const csv_row& hdr, const std::vector<csv_row>& dat) : header(hdr), data(dat) {
-    if (dat.size() > 0 && hdr.size() > 0 && hdr.size() != dat[0].size())
+    if (dat.size() > 0 && hdr.num_columns() > 0 && hdr.num_columns() != dat[0].num_columns())
     {
         throw std::logic_error("Number of columns in header not equal to number of columns in rows");
     }
 }
 
 bool evoluti::csv_container::has_header() const {
-    return header.size() > 0;
+    return header.num_columns() > 0;
 }
 
-csv_row evoluti::csv_container::get_header() const {
+evoluti::csv_row evoluti::csv_container::get_header() const {
     return header;
 }
 
-std::vector<csv_row> evoluti::csv_container::get_rows() const {
+std::vector<evoluti::csv_row> evoluti::csv_container::get_rows() const {
     return data;
 }
 
-csv_row evoluti::csv_container::get_row_at(std::size_t i) const {
+evoluti::csv_row evoluti::csv_container::get_row_at(std::size_t i) const {
     return data[i];
 }
 
-std::vector<csv_row>::iterator evoluti::csv_container::begin() {
+std::vector<evoluti::csv_row>::iterator evoluti::csv_container::begin() {
     return data.begin();
 }
 
-std::vector<csv_row>::const_iterator evoluti::csv_container::begin() const {
+std::vector<evoluti::csv_row>::const_iterator evoluti::csv_container::begin() const {
     return data.begin();
 }
 
-std::vector<csv_row>::iterator evoluti::csv_container::end() {
+std::vector<evoluti::csv_row>::iterator evoluti::csv_container::end() {
     return data.end();
 }
 
-std::vector<csv_row>::const_iterator evoluti::csv_container::end() const {
+std::vector<evoluti::csv_row>::const_iterator evoluti::csv_container::end() const {
     return data.end();
 }
 
-std::vector<csv_row>::const_iterator evoluti::csv_container::cbegin() const {
+std::vector<evoluti::csv_row>::const_iterator evoluti::csv_container::cbegin() const {
     return data.cbegin();
 }
 
-std::vector<csv_row>::const_iterator evoluti::csv_container::cend() const {
+std::vector<evoluti::csv_row>::const_iterator evoluti::csv_container::cend() const {
     return data.cend();
 }
 

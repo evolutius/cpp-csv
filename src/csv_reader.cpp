@@ -1,6 +1,6 @@
 #include "csv_reader.h"
 
-#include <ifstream>
+#include <fstream>
 #include <limits>
 #include <stdexcept>
 
@@ -28,7 +28,7 @@ std::string evoluti::csv_reader::get_filepath() const {
     return filepath;
 }
 
-evoluti::csv_reader::csv_container& evoluti::csv_reader::get_container() {
+evoluti::csv_container& evoluti::csv_reader::get_container() {
     return csv_data;
 }
 
@@ -37,7 +37,7 @@ void evoluti::csv_reader::read_and_parse() {
     std::string curr_line;
     std::size_t num_columns = std::numeric_limits<std::size_t>::max();
 
-    if (csv_file.is_open())
+    if (!csv_file.is_open())
     {
         throw("Cannot open CSV file");
     }
@@ -45,18 +45,18 @@ void evoluti::csv_reader::read_and_parse() {
     if (parsing_headers)
     {
         getline(csv_file, curr_line);  // first is header
-        csv_row header = parse_line(line);
+        csv_row header = parse_line(curr_line);
         csv_data.set_header(header);
         num_columns = header.num_columns();
     }
 
     while (getline(csv_file, curr_line))
     {
-        csv_row new_row = parse_line();
+        csv_row new_row = parse_line(curr_line);
         if (num_columns == std::numeric_limits<std::size_t>::max())
         {
-            num_columns = row.num_columns();
-        } else if (num_columns != row.num_columns())
+            num_columns = new_row.num_columns();
+        } else if (num_columns != new_row.num_columns())
         {
             csv_file.close();
             throw("Invalid CSV file (different number of columns in rows)");
@@ -67,18 +67,20 @@ void evoluti::csv_reader::read_and_parse() {
     csv_file.close();
 }
 
-evoluti::csv_row evoluti::csv_reader::parse_line(const std::string& line) {
+evoluti::csv_row evoluti::csv_reader::parse_line(const std::string& line) const {
     std::size_t curr_pos = 0;
-    constexpr std::string delim = ",";
+    const std::string delim = ",";
     csv_row row;
 
     while (curr_pos != std::string::npos)
     {
-        std::found_pos = line.find(delim, curr_pos);
+        std::size_t found_pos = line.find(delim, curr_pos);
+
+        row.append_item(line.substr(curr_pos, found_pos - curr_pos));
 
         if (found_pos != std::string::npos)
         {
-            row.append_item(line.substr(curr_pos, found_pos));
+            found_pos++;  // skip next delimiter
         }
 
         curr_pos = found_pos;

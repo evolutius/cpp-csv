@@ -3,9 +3,9 @@
 
 #include "ev_module.h"
 
-EV_MODULE_NAME("Evoluti CSV for C++");
-EV_MODULE_VERSION(0, 0, 1);
-EV_MODULE_ID({0x45, 0x56, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04});
+// EV_MODULE_NAME("Evoluti CSV for C++");
+// EV_MODULE_VERSION(0, 0, 1);
+// EV_MODULE_ID(0x45, 0x56, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04);
 
 #include "csv_container.h"
 #include "csv_reader.h"
