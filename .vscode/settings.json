@@ -72,7 +72,8 @@
         "vector": "cpp",
         "*.tcc": "cpp",
         "memory_resource": "cpp",
-        "cinttypes": "cpp"
+        "cinttypes": "cpp",
+        "iostream": "cpp"
     },
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
