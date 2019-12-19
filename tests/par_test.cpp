@@ -1,3 +1,4 @@
+#include <iomanip>
 #include <iostream>
 
 #include "evoluti_csv.h"
@@ -9,7 +10,7 @@ int main() {
 
     for (auto& hdr_field : csv_data.get_header())
     {
-        std::cout << hdr_field << "\t";
+        std::cout << std::left << std::setw(15) << hdr_field << "\t";
     }
 
     std::cout << std::endl;
@@ -18,7 +19,7 @@ int main() {
     {
         for (auto& field : row)
         {
-            std::cout << field << "\t";
+            std::cout << std::left << std::setw(15) << field << "\t";
         }
         std::cout << std::endl;
     }
