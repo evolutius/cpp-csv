@@ -5,7 +5,7 @@
 
 #### Constants
 
-MAKEFLAGS = --quiet
+#MAKEFLAGS = --quiet
 
 LIBVER=0.1
 RELEASE=1
@@ -48,7 +48,6 @@ DPS_FILES += $(patsubst $(TEST)%.cpp,$(BUILDDPS)%.d, $(DPS_FILES_TEMP))
 PATHSI = . \
 	src/ \
 	src/include/ \
-	src/ev_module/ \
 
 INCLUDES = $(patsubst %,-I%,$(PATHSI))
 
@@ -68,7 +67,7 @@ DEPENDS=-MM -MG -MF
 
 # Final Rules
 
-tests: $(BUILDDIR_PATHS) $(BUILDDIR)par_tests.$(TARGET_EXT) $(BUILDDIR)file1.csv $(BUILDDIR)file2.csv
+tests: $(BUILDDIR_PATHS) $(BUILDDIR)par_tests.$(TARGET_EXT)
 
 install:
 	@echo "ECSV" $(LIBVER): "Not Ready For Release"
@@ -105,20 +104,6 @@ $(PATHSI):
 
 $(BUILDDIR_PATHS):
 	$(MKDIR) $(BUILDDIR_PATHS)
-
-$(BUILDDIR)file1.csv:
-	@echo "Name,Age,Date" > $(BUILDDIR)file1.csv
-	@echo "Doe,25,12-15-2019" >> $(BUILDDIR)file1.csv
-	@echo "Cat,21,12-15-2019" >> $(BUILDDIR)file1.csv
-	@echo "Pet,19,12-15-2019" >> $(BUILDDIR)file1.csv
-	@echo "Dog,33,12-15-2019" >> $(BUILDDIR)file1.csv
-
-$(BUILDDIR)file2.csv:
-	@echo "Doe,25,12-15-2019" > $(BUILDDIR)file2.csv
-	@echo "Cat,21,12-15-2019" >> $(BUILDDIR)file2.csv
-	@echo "Pet,19,12-15-2019" >> $(BUILDDIR)file2.csv
-	@echo "Dog,33,12-15-2019" >> $(BUILDDIR)file2.csv
-
 
 clean:
 	$(CLEANUP) $(BUILDDIR)*.$(TARGET_EXT)
