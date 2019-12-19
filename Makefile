@@ -3,19 +3,20 @@
 ############### Copyright (c), Evoluti, Inc. #################
 ##############################################################
 
-#### Constants
+ifeq ($(OS),Windows_NT)
+	TARGET_EXT=exe
+else
+	TARGET_EXT=out
 
-#MAKEFLAGS = --quiet
+MAKEFLAGS = --quiet
 
-LIBVER=0.1
+LIBVER=0.0.1
 RELEASE=1
 
 MKDIR=mkdir -p
 CLEANUP=rm -f
 CHMOD=chmod
 MV=mv
-
-TARGET_EXT=out
 
 #### build directories
 
@@ -70,7 +71,7 @@ DEPENDS=-MM -MG -MF
 tests: $(BUILDDIR_PATHS) $(BUILDDIR)par_tests.$(TARGET_EXT)
 
 install:
-	@echo "ECSV" $(LIBVER): "Not Ready For Release"
+	@echo "ECSV" $(LIBVER): "Not Installable"
 
 # Linking
 
