@@ -42,8 +42,6 @@ void evoluti::csv_writer::save() {
         csv_file << curr_line << std::endl;
     }
 
-    // TODO: Remove additional endl at the end of CSV File
-
     csv_file.close();
 }
 
